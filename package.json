@@ -1,0 +1,27 @@
+{
+  "name": "app-init-cli",
+  "version": "0.0.1",
+  "description": "前端项目初始化的cli工具",
+  "main": "index.js",
+  "scripts": {
+    "commit": "npm install -g commitizen && commitizen init cz-conventional-changelog --save-dev --save-exact"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhao-jun/app-init-cli.git"
+  },
+  "author": "zhao-jun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhao-jun/app-init-cli/issues"
+  },
+  "homepage": "https://github.com/zhao-jun/app-init-cli#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
