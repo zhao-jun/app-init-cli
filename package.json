@@ -16,12 +16,17 @@
     "url": "https://github.com/zhao-jun/app-init-cli/issues"
   },
   "homepage": "https://github.com/zhao-jun/app-init-cli#readme",
-  "devDependencies": {
-    "cz-conventional-changelog": "^2.1.0"
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chalk": "^2.4.1",
+    "cz-conventional-changelog": "^2.1.0",
+    "ora": "^3.0.0",
+    "semver": "^5.5.1",
+    "yargs": "^12.0.2"
   }
 }
