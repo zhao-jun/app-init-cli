@@ -7,6 +7,7 @@ const chalk = require('chalk')
 const ora = require('ora')
 const semver = require('semver')
 const utils = require('./../config/utils')
+const createApp = require('./../src/creat')
 
 const spinner = ora();
 
@@ -50,7 +51,6 @@ if (typeof projectName === 'undefined') {
   process.exit(1);
 }
 
-console.log(path.resolve(projectName), utils.isSafeToCreateProjectIn(path.resolve(projectName)))
 if (program.upgrade) {
   // todo
 } else if (!utils.isSafeToCreateProjectIn(path.resolve(projectName))) {
@@ -61,5 +61,5 @@ if (program.upgrade) {
   console.log();
   process.exit(1);
 } else {
-  // todo
+  createApp(projectName)
 }
