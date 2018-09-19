@@ -7,12 +7,11 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin') // vue-loader v15新增
 
 const resolve = (dir) => path.join(__dirname, '..', dir)
 
-module.exports = {
+let config = {
   // webpack4新增
   mode: process.env.NODE_ENV || 'development',
   target: 'web', // 默认值
-  // entry: resolve('client/client-entry.js'),
-  entry: resolve('vue/index.js'),
+  entry: resolve('src/index.js'),
   output: {
     filename: 'bundle.js',
     path: resolve('dist/public'),
@@ -74,3 +73,9 @@ module.exports = {
     })
   ]
 }
+
+// dev-start
+config.entry = resolve('vue/index.js')
+// dev-end
+
+module.exports = config

@@ -26,33 +26,3 @@ module.exports = [...Array(3)].map((_, index) => ({
     return obj
   })()
 }))
-
-// [
-//   {
-//     "dependencies": (() => {
-//       let obj = JSON.parse(JSON.stringify(packageJson.dependencies))
-//       for (let key in obj) {
-//         if (vueDep.includes(key) || reactDep.includes(key)) delete obj[key]
-//       }
-//       return obj
-//     })(),
-//   },
-//   {
-//     "dependencies": (() => {
-//       let obj = JSON.parse(JSON.stringify(packageJson.dependencies))
-//       for (let key in obj) {
-//         if (vueDep.includes(key)) delete obj[key]
-//       }
-//       return obj
-//     })()
-//   },
-//   {
-//     "dependencies": (() => {
-//       let obj = JSON.parse(JSON.stringify(packageJson.dependencies))
-//       for (let key in obj) {
-//         if (reactDep.includes(key)) delete obj[key]
-//       }
-//       return obj
-//     })()
-//   }
-// ]

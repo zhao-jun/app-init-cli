@@ -7,7 +7,7 @@ const chalk = require('chalk')
 const ora = require('ora')
 const semver = require('semver')
 const utils = require('./../config/utils')
-const createApp = require('./../src/creat')
+const createApp = require('./../src/createApp')
 
 const spinner = ora();
 
