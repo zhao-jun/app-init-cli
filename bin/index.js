@@ -25,7 +25,7 @@ if (semver.lt(currentNodeVersion, minNodeVersion)) {
 }
 // 参数处理
 const program = yargs
-  .command(`create [dir]`, '创建项目', (yargs) => {
+  .usage(`$0 [dir]`, '创建项目', (yargs) => {
     yargs
       .positional('dir', {
         describe: '项目目录'

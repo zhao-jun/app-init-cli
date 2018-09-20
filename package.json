@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.1",
+    "cross-spawn": "^6.0.5",
     "fs-extra": "^7.0.0",
     "inquirer": "^6.2.0",
     "ora": "^3.0.0",

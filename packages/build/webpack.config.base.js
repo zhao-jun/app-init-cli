@@ -6,6 +6,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin') // vue-loader v15新增
 // vue-end
 
 const resolve = (dir) => path.join(__dirname, '..', dir)
+const include = [resolve('client'), resolve('test'), resolve('vue'), resolve('react'), resolve('src')]
 
 let config = {
   // webpack4新增
@@ -25,7 +26,7 @@ let config = {
       //   {
       //     test: /\.(vue|js|jsx)$/,
       //     loader: 'eslint-loader',
-      //     include: [resolve('client'), resolve('test'), resolve('vue')]
+      //     include,
       //     enforce: 'pre'
       //   },
       // vue-start
@@ -33,14 +34,14 @@ let config = {
         test: /\.vue$/,
         // 依赖css-loader、vue-template-compiler
         loader: 'vue-loader',
-        include: [resolve('client'), resolve('test'), resolve('vue')]
+        include
       },
       // vue-end
       // 普通的 `.js` 文件以及 `.vue` 文件中的 `<script>` 块
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('client'), resolve('test'), resolve('vue')]
+        include
       },
       {
         test: /\.(gif|jpg|jpeg|png|svg)$/,

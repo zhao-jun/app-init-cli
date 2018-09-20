@@ -11,6 +11,7 @@ const isDev = process.env.NODE_ENV === 'development'
 // : '[hash:base64:5]'
 
 const resolve = (dir) => path.join(__dirname, '..', dir)
+const include = [resolve('client'), resolve('test'), resolve('vue'), resolve('react'), resolve('src')]
 
 module.exports = webpackMerge(basicConfig, {
     module: {
@@ -33,7 +34,7 @@ module.exports = webpackMerge(basicConfig, {
                     'postcss-loader',
                     'less-loader'
                 ],
-                include: [resolve('client'), resolve('test'), resolve('vue')]
+                include
             }
         ]
     },
