@@ -8,13 +8,14 @@ const ora = require('ora')
 const semver = require('semver')
 const utils = require('./../config/utils')
 const createApp = require('./../src/createApp')
+const upgradeApp = require('./../src/upgradeApp')
 
 const spinner = ora();
 
 const currentNodeVersion = process.versions.node
 const minNodeVersion = '4.0.0'
 
-let projectName;
+let appName;
 
 // node版本判断，支持ES6部分语法
 if (semver.lt(currentNodeVersion, minNodeVersion)) {
@@ -31,7 +32,7 @@ const program = yargs
         describe: '项目目录'
       })
   }, (argv) => {
-    projectName = argv.dir
+    appName = argv.dir
   })
   .option('u', {
     alias: 'upgrade',
@@ -41,7 +42,7 @@ const program = yargs
   .help()
   .argv;
 
-if (typeof projectName === 'undefined') {
+if (typeof appName === 'undefined') {
   spinner.fail(`请指定要${program.upgrade ? '升级' : '创建'}的项目目录名:`);
   console.log(`  ${chalk.cyan(program.$0)}${chalk.green(' <项目目录>')}`);
   console.log()
@@ -52,14 +53,14 @@ if (typeof projectName === 'undefined') {
 }
 
 if (program.upgrade) {
-  // todo
-} else if (!utils.isSafeToCreateProjectIn(path.resolve(projectName))) {
-  spinner.fail(`该文件夹（${chalk.green(projectName)}）已经存在，且存在导致冲突的文件.`);
+  upgradeApp(appName)
+} else if (!utils.isSafeToCreateProjectIn(path.resolve(appName))) {
+  spinner.fail(`该文件夹（${chalk.green(appName)}）已经存在，且存在导致冲突的文件.`);
   console.log('  请使用一个新的文件夹名，或者使用升级命令将项目构建方式升级到最新版本：');
   console.log();
-  console.log(`   ${chalk.cyan(program.$0)} ${chalk.green(projectName)}${chalk.cyan(' --upgrade')}`);
+  console.log(`   ${chalk.cyan(program.$0)} ${chalk.green(appName)}${chalk.cyan(' --upgrade')}`);
   console.log();
   process.exit(1);
 } else {
-  createApp(projectName)
+  createApp(appName)
 }
