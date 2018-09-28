@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const paths = require('./paths')
 // vue-start
 const VueLoaderPlugin = require('vue-loader/lib/plugin') // vue-loader v15新增
 // vue-end
@@ -64,13 +65,14 @@ let config = {
     new VueLoaderPlugin(),
     // vue-end
     new HtmlWebpackPlugin({
-      template: resolve('build/template.html')
+      template: resolve('public/template.html')
     }),
     // 可以在前端代码中使用，接受字符串中字符串，会将字符串当作变量
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: `"${process.env.NODE_ENV}"`
-      }
+      },
+      // 'process.BASE_URL'
     })
   ]
 }
