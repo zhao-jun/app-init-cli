@@ -22,6 +22,9 @@ let config = {
     // 两种写法都可以
     publicPath: '/public/'
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.vue']
+  },
   module: {
     rules: [
       //   {
@@ -40,7 +43,7 @@ let config = {
       // vue-end
       // 普通的 `.js` 文件以及 `.vue` 文件中的 `<script>` 块
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         include
       },
@@ -78,7 +81,7 @@ let config = {
 }
 
 // dev-start
-config.entry = resolve('vue/index.js')
+config.entry = resolve('react/index.jsx')
 // dev-end
 
 module.exports = config

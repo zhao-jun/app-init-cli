@@ -1,11 +1,26 @@
 {
-    "presets": [
-      ["env", {
+  "presets": [
+    [
+      "env",
+      {
         "modules": false,
         "targets": {
-          "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+          "browsers": [
+            "> 1%",
+            "last 2 versions",
+            "not ie <= 8"
+          ]
         }
-      }]
-    ],
-    "plugins": ["transform-runtime"]
-  }
+      }
+    ]
+    // react-start
+    ,"react"
+    // react-end
+  ],
+  "plugins": [
+    "transform-runtime"
+    // react-start
+    ,"react-hot-loader/babel"
+    // react-end
+  ]
+}

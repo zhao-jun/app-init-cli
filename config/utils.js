@@ -43,24 +43,26 @@ module.exports = {
     if (type === 2 && src.includes(resolve('packages/react'))) return false
     return true
   },
-  // 根据项目类型修改文件
+  // 根据项目类型修改文件，只对路径下的文件处理，不遍历文件夹
   fileModify (modifyPath, type) {
     let files = fs.readdirSync(modifyPath)
     let regex;
     switch (type) {
       case 1:
-        regex = /(\/\/\s(vue|dev)-start[\s\S]*?\/\/\s(vue|dev)-end\s+)|(\/\/\s(react-start|react-end)\s+)/g
+        regex = /([ ]+\/\/\s(vue|dev)-start[\s\S]*?\/\/\s(vue|dev)-end[\t\r\n\v\f]+)|([ ]+\/\/\s(react-start|react-end)[\t\r\n\v\f]+)/g
         break;
       case 2:
-        regex = /(\/\/\s(react|dev)-start[\s\S]*?\/\/\s(react|dev)-end\s+)|(\/\/\s(vue-start|vue-end)\s+)/g
+        regex = /([ ]+\/\/\s(react|dev)-start[\s\S]*?\/\/\s(react|dev)-end[\t\r\n\v\f]+)|([ ]+\/\/\s(vue-start|vue-end)[\t\r\n\v\f]+)/g
         break;
       default:
-        regex = /\/\/\s(vue|react|dev)-start[\s\S]*?\/\/\s(vue|react|dev)-end\s+/g
+        regex = /[ ]+\/\/\s(vue|react|dev)-start[\s\S]*?\/\/\s(vue|react|dev)-end[\t\r\n\v\f]+/g
     }
     files.forEach(file => {
-      let data = fs.readFileSync(path.join(modifyPath, file));
-      data = data.toString().replace(regex, '')
-      fs.writeFileSync(path.join(modifyPath, file), data);
+      if (fs.statSync(path.join(modifyPath, file)).isFile()) {
+        let data = fs.readFileSync(path.join(modifyPath, file));
+        data = data.toString().replace(regex, '')
+        fs.writeFileSync(path.join(modifyPath, file), data);
+      }
     })
   }
 }

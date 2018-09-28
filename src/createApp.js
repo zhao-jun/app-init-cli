@@ -79,6 +79,7 @@ const creatApp = (appPath, appName) => {
     "license": packageJsonTmp.license,
     ...dependenciesTmp[answers.type]
   }
+  // 确保存在，不存在则创建
   fs.ensureDirSync(appPath);
   fs.writeFileSync(path.join(appPath, 'package.json'), JSON.stringify(packageJson, null, 2));
 
@@ -119,6 +120,9 @@ const run = (appPath, appName) => {
   // 根据项目类型生成相应的webpack
   let buildPath = path.join(appPath, 'build')
   utils.fileModify(buildPath, answers.type)
+
+  // 根据项目类型生成相应的.babelrc
+  utils.fileModify(appPath, answers.type)
 
   // 修改文件名
   if (fs.existsSync(path.join(appPath, 'vue'))) fs.renameSync(path.join(appPath, 'vue'), path.join(appPath, 'src'))

@@ -2,7 +2,7 @@ const packageJson = require('./../packages/package.json')
 
 // vue、react各自独有的依赖
 const vueDep = ["vue"],
-  reactDep = ["react"],
+  reactDep = ["react", "react-dom", "react-hot-loader", "react-router-dom", "babel-preset-react"],
   blankDep = vueDep.concat(reactDep),
   depend = [blankDep, vueDep, reactDep]
 
