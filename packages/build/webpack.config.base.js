@@ -81,7 +81,7 @@ let config = {
 }
 
 // dev-start
-config.entry = resolve('react/index.jsx')
+config.entry = resolve('vue/index.js')
 // dev-end
 
 module.exports = config

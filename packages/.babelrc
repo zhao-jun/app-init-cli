@@ -21,7 +21,7 @@
     "transform-runtime"
     // react-start
     ,"react-hot-loader/babel"
-    ,"syntax-dynamic-import"
     // react-end
+    ,"syntax-dynamic-import"
   ]
 }
