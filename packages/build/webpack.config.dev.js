@@ -14,6 +14,19 @@ const resolve = (dir) => path.join(__dirname, '..', dir)
 const include = [resolve('client'), resolve('test'), resolve('vue'), resolve('react'), resolve('src')]
 
 module.exports = webpackMerge(basicConfig, {
+  entry: [
+    // Include an alternative client for WebpackDevServer. A client's job is to
+    // connect to WebpackDevServer by a socket and get notified about changes.
+    // When you save a file, the client will either apply hot updates (in case
+    // of CSS changes), or refresh the page (in case of JS changes). When you
+    // make a syntax error, this client will display a syntax error overlay.
+    // Note: instead of the default WebpackDevServer client, we use a custom one
+    // to bring better experience for Create React App users. You can replace
+    // the line below with these two lines if you prefer the stock client:
+    require.resolve('webpack-dev-server/client') + '?/',
+    require.resolve('webpack/hot/dev-server'),
+    basicConfig.entry
+  ],
   module: {
     rules: [
       {
@@ -38,26 +51,31 @@ module.exports = webpackMerge(basicConfig, {
       }
     ]
   },
-  devServer: {
-    port: 8000,
-    host: '0.0.0.0',
-    overlay: {
-      errors: true
-    },
-    hot: true,
-    headers: { 'Access-Control-Allow-Origin': '*' },
-    historyApiFallback: {
-      index: '/public/index.html'
-    },
-    // In JavaScript code, you can access it with `process.env.PUBLIC_URL`.
-    // Note that we only recommend to use `public` folder as an escape hatch
-    // for files like `favicon.ico`, `manifest.json`, and libraries that are
-    // for some reason broken when imported through Webpack.
-    contentBase: resolve('public'),
-    proxy: {
-      '/api': 'http://127.0.0.1:3030'
-    }
-  },
+  // dev-start
+  // 全部移到start.js，本质一样,start.js更灵活
+  // devServer: {
+  //   port: 8000,
+  //   host: '127.0.0.1',
+  //   overlay: {
+  //     errors: true
+  //   },
+  //   hot: true,
+  //   headers: { 'Access-Control-Allow-Origin': '*' },
+  //   historyApiFallback: {
+  //     index: '/public/index.html'
+  //   },
+  //   // publicPath: '/public/',
+  //   // In JavaScript code, you can access it with `process.env.PUBLIC_URL`.
+  //   // Note that we only recommend to use `public` folder as an escape hatch
+  //   // for files like `favicon.ico`, `manifest.json`, and libraries that are
+  //   // for some reason broken when imported through Webpack.
+  //   contentBase: resolve('public'),
+  //   open: true,
+  //   proxy: {
+  //     '/api': 'http://127.0.0.1:3030'
+  //   }
+  // },
+  // dev-end
   plugins: [
     // webpack-dev-server hot
     new webpack.HotModuleReplacementPlugin(),

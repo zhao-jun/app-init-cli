@@ -13,7 +13,7 @@ module.exports =  webpackMerge(basicConfig, {
   output: {
     // 打包的时候使用chunkhash，hash所有打包文件hash值相同，其中一个文件改变就全部改变，不利于缓存
     filename: '[name].[chunkhash:8].js',
-    // 引用路径，node端做处理
+    // 引用路径，node端/nginx做处理
     publicPath: '/public/'
   },
   module: {

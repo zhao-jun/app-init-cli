@@ -81,7 +81,7 @@ let config = {
 }
 
 // dev-start
-config.entry = resolve('vue/index.js')
+config.entry = require('../config/dev').devType === 'vue' ? resolve('vue/index.js') : resolve('react/index.jsx')
 // dev-end
 
 module.exports = config
