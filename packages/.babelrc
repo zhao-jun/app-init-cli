@@ -1,6 +1,7 @@
 {
   "presets": [
     [
+      // 已经确定进入 es 规范的语法，不包括未进入规范的语法，比如对象展开符
       "env",
       {
         "modules": false,
@@ -16,6 +17,7 @@
     // react-start
     ,"react"
     // react-end
+    , "stage-1"
   ],
   "plugins": [
     "transform-runtime"

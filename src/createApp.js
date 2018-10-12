@@ -170,11 +170,11 @@ const install = (appPath, appName) => {
   console.log(chalk.cyan(`  ${command} run build`));
   console.log('    生产环境打包App.');
   console.log();
-  // todo
+  // TODO
   // console.log(chalk.cyan(`  ${command} test`));
   // console.log('    进行测试.');
   // console.log();
-  // todo
+  // TODO
   // console.log(
   //   chalk.cyan(`  ${command} run eject`)
   // );
