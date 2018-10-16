@@ -11,10 +11,7 @@ export default () => {
       item.props = route => Object.assign({}, route.query, route.params)
       return item
     }),
-    mode: 'history',
-    beforeEnter: (to, from, next) => {
-      next();
-    }
+    mode: 'history'
   })
   beforeRouter(router);
   afterRouter(router);

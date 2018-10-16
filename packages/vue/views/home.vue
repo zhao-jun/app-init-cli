@@ -1,31 +1,33 @@
 <template>
-  <div :class="$style.home">{{text}}</div>
+  <div :class="$style.home">
+    {{text}}
+  </div>
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapMutations, mapActions } = createNamespacedHelpers('home')
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapMutations, mapActions } = createNamespacedHelpers("home");
 
 export default {
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
   computed: {
-    ...mapState(['text'])
+    ...mapState(["text"])
   },
-  mounted () {
+  mounted() {
   },
   methods: {
-    // ...mapMutations([
-    //   'updateText'
-    // ])
+    ...mapMutations(["updateText"])
   }
-}
+};
 </script>
 
 <style lang="less" module scoped>
 .home {
   color: aqua;
+  .test {
+    color: #000;
+  }
 }
 </style>
