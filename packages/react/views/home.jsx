@@ -1,9 +1,24 @@
 import React, { Component } from 'react'
+import { inject, observer } from 'mobx-react';
+import { toJS } from 'mobx';
 
+@inject('homeStore')
+@observer
 export default class Home extends Component {
+  homeStore = this.props.homeStore;
+
+  componentDidMount () {
+  }
+
+  updateText = () => {
+    this.homeStore.updateText('yeah!')
+  }
+
   render() {
+    const homeStore = this.homeStore
+    const {title} = homeStore
     return (
-      <div>Welcome to use app-init-cli</div>
+      <div onClick={this.updateText}>{title}</div>
     )
   }
 }
