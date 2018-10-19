@@ -1,18 +1,24 @@
+import {getHomeList} from '../../service/home'
+
 export default {
   namespaced: true,
   state: {
-    text: 'Welcome to use app-init-cli'
+    text: ''
   },
   mutations: {
     updateText (state, text) {
       state.text = text
+    },
+    updateList (state, data) {
+      state.list = data.list
+      state.text = data.title
     }
   },
   actions: {
-    // TODO: ajax、Node端暂未添加
-    // async getHomeList ({commit}) {
-    //   // let data = await getHomeText()
-    //   commit('updateText', data)
-    // }
+    // mock数据
+    async getHomeList ({commit}) {
+      let data = await getHomeList()
+      commit('updateList', data)
+    }
   }
 }

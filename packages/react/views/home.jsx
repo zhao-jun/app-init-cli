@@ -8,6 +8,7 @@ export default class Home extends Component {
   homeStore = this.props.homeStore;
 
   componentDidMount () {
+    this.homeStore.getHomeList()
   }
 
   updateText = () => {

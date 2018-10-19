@@ -5,6 +5,8 @@ import Vuex from 'vuex'
 import createRouter from './config/router'
 import createStore from './store/store'
 
+if (process.env.NODE_ENV === 'development') require('./mock')
+
 // import './assets/styles/test.less'
 
 // const root = document.createElement('div')

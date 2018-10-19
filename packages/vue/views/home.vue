@@ -16,9 +16,11 @@ export default {
     ...mapState(["text"])
   },
   mounted() {
+    this.getHomeList()
   },
   methods: {
-    ...mapMutations(["updateText"])
+    ...mapMutations(["updateText"]),
+    ...mapActions(['getHomeList'])
   }
 };
 </script>

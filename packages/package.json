@@ -11,6 +11,7 @@
   "author": "zhao-jun",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "mobx": "^5.5.0",
     "mobx-react": "^5.3.1",
     "react": "^16.5.2",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.1.5",
+    "axios-mock-adapter": "^1.15.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
@@ -38,6 +40,7 @@
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.4.2",
+    "mockjs": "^1.0.1-beta3",
     "postcss-loader": "^3.0.0",
     "react-hot-loader": "^4.3.11",
     "rimraf": "^2.6.2",
