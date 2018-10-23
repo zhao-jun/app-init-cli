@@ -27,12 +27,12 @@ let config = {
   },
   module: {
     rules: [
-      //   {
-      //     test: /\.(vue|js|jsx)$/,
-      //     loader: 'eslint-loader',
-      //     include,
-      //     enforce: 'pre'
-      //   },
+      {
+        test: /\.(vue|js|jsx)$/,
+        loader: 'eslint-loader',
+        include,
+        enforce: 'pre'
+      },
       // vue-start
       {
         test: /\.vue$/,

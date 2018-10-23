@@ -1,6 +1,6 @@
 import Router from 'vue-router'
 import routes from './routes'
-import {Config} from './index'
+import { Config } from './index'
 
 export default () => {
   const router = new Router({
@@ -12,14 +12,14 @@ export default () => {
     }),
     mode: 'history'
   })
-  beforeRouter(router);
-  afterRouter(router);
+  beforeRouter(router)
+  afterRouter(router)
   return router
 }
 
 const beforeRouter = (router) => {
   router.beforeEach((to, from, next) => {
-    next();
+    next()
   })
 }
 

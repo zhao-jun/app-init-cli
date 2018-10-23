@@ -1,4 +1,4 @@
-import Mock from 'mockjs';
+import Mock from 'mockjs'
 
 // 定义数据结构
 export default Mock.mock({

@@ -1,3 +1,3 @@
 module.exports = {
-  devType: 'react'  // react|vue
+  devType: 'vue' // react|vue
 }

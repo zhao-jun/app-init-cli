@@ -1,4 +1,4 @@
-import {getHomeList} from '../../service/home'
+import { getHomeList } from '../../service/home'
 
 export default {
   namespaced: true,
@@ -16,7 +16,7 @@ export default {
   },
   actions: {
     // mock数据
-    async getHomeList ({commit}) {
+    async getHomeList ({ commit }) {
       let data = await getHomeList()
       commit('updateList', data)
     }
