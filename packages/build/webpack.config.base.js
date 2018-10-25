@@ -28,10 +28,15 @@ let config = {
   module: {
     rules: [
       {
-        test: /\.(vue|js|jsx)$/,
+        test: /\.(vue|js)$/,
         loader: 'eslint-loader',
-        include,
-        enforce: 'pre'
+        include: resolve('vue'),
+        enforce: 'pre',
+        options: {
+          // https://github.com/webpack-contrib/eslint-loader/issues/248
+          // 暂时失效
+          fix: true
+        }
       },
       // vue-start
       {

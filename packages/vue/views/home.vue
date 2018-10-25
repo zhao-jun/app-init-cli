@@ -5,24 +5,24 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapMutations, mapActions } = createNamespacedHelpers('home')
+import { createNamespacedHelpers } from "vuex";
+const { mapState, mapMutations, mapActions } = createNamespacedHelpers("home");
 
 export default {
-  data () {
-    return {}
+  data() {
+    return {};
   },
   computed: {
-    ...mapState(['text'])
+    ...mapState(["text"])
   },
-  mounted () {
-    this.getHomeList()
+  mounted() {
+    this.getHomeList();
   },
   methods: {
-    ...mapMutations(['updateText']),
-    ...mapActions(['getHomeList'])
+    ...mapMutations(["updateText"]),
+    ...mapActions(["getHomeList"])
   }
-}
+};
 </script>
 
 <style lang="less" module scoped>
