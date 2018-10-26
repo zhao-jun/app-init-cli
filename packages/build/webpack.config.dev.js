@@ -2,7 +2,9 @@ const path = require('path')
 const webpack = require('webpack')
 const basicConfig = require('./webpack.config.base')
 const webpackMerge = require('webpack-merge')
-
+// dev-start
+const configDev = require('../config/dev')
+// dev-end
 const isDev = process.env.NODE_ENV === 'development'
 
 // // css module开发和生产命名区分
@@ -11,7 +13,10 @@ const isDev = process.env.NODE_ENV === 'development'
 // : '[hash:base64:5]'
 
 const resolve = (dir) => path.join(__dirname, '..', dir)
-const include = [resolve('client'), resolve('test'), resolve('vue'), resolve('react'), resolve('src')]
+const include = [resolve('test'), resolve('src')]
+// dev-start
+include.push(resolve(configDev.devType))
+// dev-end
 
 module.exports = webpackMerge(basicConfig, {
   entry: [

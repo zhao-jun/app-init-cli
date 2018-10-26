@@ -1,3 +1,3 @@
-import request from './xhr'
+import request from "./xhr";
 
-export const getHomeList = param => request('get', '/home/list', param)
+export const getHomeList = param => request("get", "/home/list", param);

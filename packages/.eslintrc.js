@@ -1,4 +1,4 @@
-module.exports = {
+let config = {
     root: true,
     env: {
       browser: true,
@@ -6,23 +6,32 @@ module.exports = {
     },
     extends: [
       // https://github.com/standard/standard/blob/master/docs/RULES-zhcn.md
-      "standard",
+      // "standard",
+      // vue-start
       // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
       "plugin:vue/essential",
+      // vue-end
+      // react-start
+      "react-app",
+      // react-end
       // https://github.com/prettier/eslint-plugin-prettier#readme
       "plugin:prettier/recommended"
     ],
     parserOptions: {
       parser: "babel-eslint",
-      ecmaVersion: 6
+      ecmaVersion: 6,
+      // https://github.com/mobxjs/mobx-react/issues/528
+      ecmaFeatures: {
+        legacyDecorators: true
+      }
     },
     plugins: [
+      // vue-start
       "vue"
-      // "standard",
-      // "promise",
-      // "html"
+      // vue-end
     ],
     rules: {
+      // prettier标记的地方抛出错误信息，eslint进行autofix
       "prettier/prettier": "error",
       // allow async-await
       'generator-star-spacing': 'off',
@@ -30,3 +39,14 @@ module.exports = {
       'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
     }
 };
+
+// dev-start
+const configDevType = require('./config/dev.js').devType
+let filterType
+if (configDevType === 'vue') filterType = 'react'
+if (configDevType === 'react') filterType = 'vue'
+config.extends = config.extends.filter(i => !i.includes(configDevType))
+config.plugins = config.plugins.filter(i => !i.includes(configDevType))
+// dev-end
+
+module.exports = config

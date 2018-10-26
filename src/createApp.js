@@ -68,7 +68,7 @@ module.exports = (appName) => {
 }
 
 const creatApp = (appPath, appName) => {
-  // 生产package.json
+  // 生成package.json
   const packageJson = {
     "name": answers.name,
     "version": answers.version,
@@ -92,7 +92,7 @@ const filterFunc = (src, dest) => utils.filter(src, dest, answers.type)
 
 const run = (appPath, appName) => {
   process.chdir(appPath);
-
+  // 复制文件
   const packagePath = resolve('packages')
   // if (fs.existsSync(packagePath)) {
   fs.copySync(packagePath, appPath, { filter: filterFunc });

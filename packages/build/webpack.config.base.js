@@ -5,9 +5,15 @@ const paths = require('./paths')
 // vue-start
 const VueLoaderPlugin = require('vue-loader/lib/plugin') // vue-loader v15新增
 // vue-end
+// dev-start
+const configDev = require('../config/dev')
+// dev-end
 
 const resolve = (dir) => path.join(__dirname, '..', dir)
-const include = [resolve('client'), resolve('test'), resolve('vue'), resolve('react'), resolve('src')]
+const include = [resolve('test'), resolve('src')]
+// dev-start
+include.push(resolve(configDev.devType))
+// dev-end
 
 let config = {
   // webpack4新增
@@ -28,14 +34,14 @@ let config = {
   module: {
     rules: [
       {
-        test: /\.(vue|js)$/,
+        test: /\.(vue|js|jsx)$/,
         loader: 'eslint-loader',
-        include: resolve('vue'),
+        include,
         enforce: 'pre',
         options: {
           // https://github.com/webpack-contrib/eslint-loader/issues/248
-          // 暂时失效
-          fix: true
+          // eslint-loader v2.1.1存在BUG，目前固定版本v2.1.0
+          // fix: true
         }
       },
       // vue-start
@@ -86,7 +92,7 @@ let config = {
 }
 
 // dev-start
-config.entry = require('../config/dev').devType === 'vue' ? resolve('vue/index.js') : resolve('react/index.jsx')
+config.entry = configDev.devType === 'vue' ? resolve('vue/index.js') : resolve('react/index.jsx')
 // dev-end
 
 module.exports = config

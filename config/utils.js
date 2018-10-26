@@ -49,13 +49,13 @@ module.exports = {
     let regex;
     switch (type) {
       case 1:
-        regex = /([ ]+\/\/\s(vue|dev)-start[\s\S]*?\/\/\s(vue|dev)-end[\t\r\n\v\f]+)|([ ]+\/\/\s(react-start|react-end)[\t\r\n\v\f]+)/g
+        regex = /([ ]*\/\/\s(vue|dev)-start[\s\S]*?\/\/\s(vue|dev)-end[\t\r\n\v\f]+)|([ ]*\/\/\s(react-start|react-end)[\t\r\n\v\f]+)/g
         break;
       case 2:
-        regex = /([ ]+\/\/\s(react|dev)-start[\s\S]*?\/\/\s(react|dev)-end[\t\r\n\v\f]+)|([ ]+\/\/\s(vue-start|vue-end)[\t\r\n\v\f]+)/g
+        regex = /([ ]*\/\/\s(react|dev)-start[\s\S]*?\/\/\s(react|dev)-end[\t\r\n\v\f]+)|([ ]*\/\/\s(vue-start|vue-end)[\t\r\n\v\f]+)/g
         break;
       default:
-        regex = /[ ]+\/\/\s(vue|react|dev)-start[\s\S]*?\/\/\s(vue|react|dev)-end[\t\r\n\v\f]+/g
+        regex = /[ ]*\/\/\s(vue|react|dev)-start[\s\S]*?\/\/\s(vue|react|dev)-end[\t\r\n\v\f]+/g
     }
     files.forEach(file => {
       if (fs.statSync(path.join(modifyPath, file)).isFile()) {
