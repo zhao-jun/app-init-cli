@@ -164,7 +164,7 @@ const install = (appPath, appName) => {
   console.log(`项目${chalk.green(answers.name)}初始化成功! 路径为${chalk.green(appPath)}`);
   console.log('在该项目中, 你可以运行以下命令:');
   console.log();
-  console.log(chalk.cyan(`  ${command} start`));
+  console.log(chalk.cyan(`  ${command} run dev`));
   console.log('    启动本地服务进行开发.');
   console.log();
   console.log(chalk.cyan(`  ${command} run build`));
@@ -180,7 +180,7 @@ const install = (appPath, appName) => {
   // );
   console.log('运行下面的命令切换到项目目录开始工作:');
   console.log(`  ${chalk.cyan(`cd ${path.relative(oldPath, appPath)}`)}`);
-  console.log(`  ${chalk.cyan(`${command} start`)}`);
+  console.log(`  ${chalk.cyan(`${command} run dev`)}`);
   console.log();
   console.log('Happy hacking!');
 }

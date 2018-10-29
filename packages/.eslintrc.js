@@ -20,10 +20,12 @@ let config = {
     parserOptions: {
       parser: "babel-eslint",
       ecmaVersion: 6,
+      // react-start
       // https://github.com/mobxjs/mobx-react/issues/528
       ecmaFeatures: {
         legacyDecorators: true
       }
+      // react-end
     },
     plugins: [
       // vue-start
@@ -45,8 +47,8 @@ const configDevType = require('./config/dev.js').devType
 let filterType
 if (configDevType === 'vue') filterType = 'react'
 if (configDevType === 'react') filterType = 'vue'
-config.extends = config.extends.filter(i => !i.includes(configDevType))
-config.plugins = config.plugins.filter(i => !i.includes(configDevType))
+config.extends = config.extends.filter(i => !i.includes(filterType))
+config.plugins = config.plugins.filter(i => !i.includes(filterType))
 // dev-end
 
 module.exports = config

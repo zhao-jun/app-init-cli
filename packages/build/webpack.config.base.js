@@ -8,7 +8,6 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin') // vue-loader v15新增
 // dev-start
 const configDev = require('../config/dev')
 // dev-end
-
 const resolve = (dir) => path.join(__dirname, '..', dir)
 const include = [resolve('test'), resolve('src')]
 // dev-start
@@ -41,7 +40,7 @@ let config = {
         options: {
           // https://github.com/webpack-contrib/eslint-loader/issues/248
           // eslint-loader v2.1.1存在BUG，目前固定版本v2.1.0
-          // fix: true
+          fix: true
         }
       },
       // vue-start
@@ -79,7 +78,20 @@ let config = {
     new VueLoaderPlugin(),
     // vue-end
     new HtmlWebpackPlugin({
-      template: resolve('public/template.html')
+      filename: process.env.NODE_ENV === 'development'
+      ? 'index.html'
+      : resolve('dist/index.html'),
+      template: paths.buildHtml,
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency'
     }),
     // 可以在前端代码中使用，接受字符串中字符串，会将字符串当作变量
     new webpack.DefinePlugin({

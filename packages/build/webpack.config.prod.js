@@ -2,19 +2,26 @@ const path = require('path')
 const basicConfig = require('./webpack.config.base')
 const webpackMerge = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
+// dev-start
+const configDev = require('../config/dev')
+// dev-end
 const resolve = (dir) => path.join(__dirname, '..', dir)
+const include = [resolve('test'), resolve('src')]
+// dev-start
+include.push(resolve(configDev.devType))
+// dev-end
 
-module.exports =  webpackMerge(basicConfig, {
-  entry: {
-    app: resolve('vue/index.js'),
-    // vender: ['vue']
-  },
+let config =  webpackMerge(basicConfig, {
+  // entry: {
+  //   app: resolve('vue/index.js'),
+  //   // vender: ['vue']
+  // },
   output: {
     // 打包的时候使用chunkhash，hash所有打包文件hash值相同，其中一个文件改变就全部改变，不利于缓存
     filename: '[name].[chunkhash:8].js',
     // 引用路径，node端/nginx做处理
-    publicPath: '/public/'
+    publicPath: '/public/',
+    // path: resolve('dist')
   },
   module: {
     rules: [
@@ -35,7 +42,7 @@ module.exports =  webpackMerge(basicConfig, {
           'postcss-loader',
           'less-loader'
         ],
-        include: [resolve('client'), resolve('test'), resolve('vue')]
+        include
       }
     ]
   },
@@ -55,3 +62,5 @@ module.exports =  webpackMerge(basicConfig, {
     })
   ]
 })
+
+module.exports = config
