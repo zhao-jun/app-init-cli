@@ -11,7 +11,6 @@ const createApp = require('./../src/createApp')
 const upgradeApp = require('./../src/upgradeApp')
 
 const spinner = ora();
-
 const currentNodeVersion = process.versions.node
 const minNodeVersion = '4.0.0'
 
@@ -26,14 +25,8 @@ if (semver.lt(currentNodeVersion, minNodeVersion)) {
 }
 // 参数处理
 const program = yargs
-  .usage(`$0 [dir]`, '创建项目', (yargs) => {
-    yargs
-      .positional('dir', {
-        describe: '项目目录'
-      })
-  }, (argv) => {
-    appName = argv.dir
-  })
+  .usage(`app-init-cli [dir]`)
+  .describe('创建项目')
   .option('u', {
     alias: 'upgrade',
     describe: '升级项目到最新版本'
@@ -41,13 +34,30 @@ const program = yargs
   .version()
   .help()
   .argv;
-
+appName = program._[0]
+// usage写法
+// const program = yargs
+// .usage(`$0 [dir]`, '创建项目', (yargs) => {
+//   yargs
+//     .positional('dir', {
+//       describe: '项目目录'
+//     })
+// }, (argv) => {
+//   appName = argv.dir
+// })
+// .option('u', {
+//   alias: 'upgrade',
+//   describe: '升级项目到最新版本'
+// })
+// .version()
+// .help()
+// .argv;
 if (typeof appName === 'undefined') {
   spinner.fail(`请指定要${program.upgrade ? '升级' : '创建'}的项目目录名:`);
-  console.log(`  ${chalk.cyan(program.$0)}${chalk.green(' <项目目录>')}`);
+  console.log(`  ${chalk.cyan('app-init-cli')}${chalk.green(' <项目目录>')}`);
   console.log()
   console.log('例如:');
-  console.log(`  ${chalk.cyan(program.$0)}${chalk.green(' my-app')}`);
+  console.log(`  ${chalk.cyan('app-init-cli')}${chalk.green(' my-app')}`);
   console.log()
   process.exit(1);
 }
@@ -58,7 +68,7 @@ if (program.upgrade) {
   spinner.fail(`该文件夹（${chalk.green(appName)}）已经存在，且存在导致冲突的文件.`);
   console.log('  请使用一个新的文件夹名，或者使用升级命令将项目构建方式升级到最新版本：');
   console.log();
-  console.log(`   ${chalk.cyan(program.$0)} ${chalk.green(appName)}${chalk.cyan(' --upgrade')}`);
+  console.log(`   ${chalk.cyan('app-init-cli')} ${chalk.green(appName)}${chalk.cyan(' --upgrade')}`);
   console.log();
   process.exit(1);
 } else {

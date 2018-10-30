@@ -1,8 +1,11 @@
 {
   "name": "app-init-cli",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "前端项目初始化的cli工具",
-  "main": "index.js",
+  "main": "src/createApp.js",
+  "bin": {
+    "app-init-cli": "./bin/index.js"
+  },
   "scripts": {
     "commit": "npm install -g commitizen && commitizen init cz-conventional-changelog --save-dev --save-exact"
   },
