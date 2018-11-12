@@ -1,7 +1,6 @@
 {
   "name": "template",
   "version": "0.0.1",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node build/start.js",
@@ -9,7 +8,8 @@
     "dev-webpack": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.dev.js",
     "build-webpack": "rimraf dist && cross-env NODE_ENV=production webpack --config build/webpack.config.prod.js",
     "lint": "eslint --ext .js,.jsx,.vue src",
-    "lint-fix": "eslint --fix --ext .js,.jsx,.vue src"
+    "lint-fix": "eslint --fix --ext .js,.jsx,.vue src",
+    "commit": "npm install -g commitizen && commitizen init cz-conventional-changelog --save-dev --save-exact"
   },
   "author": "zhao-jun",
   "license": "MIT",
@@ -62,6 +62,7 @@
     "lint-staged": "^7.3.0",
     "mini-css-extract-plugin": "^0.4.2",
     "mockjs": "^1.0.1-beta3",
+    "ora": "^3.0.0",
     "postcss-loader": "^3.0.0",
     "prettier": "^1.14.3",
     "react-hot-loader": "^4.3.11",

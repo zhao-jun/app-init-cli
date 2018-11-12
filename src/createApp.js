@@ -5,10 +5,6 @@ const semver = require('semver');
 const chalk = require('chalk');
 const spawn = require('cross-spawn');
 const utils = require('./../config/utils')
-// Node.js 4.0.0 不支持解构
-// const {execSync} = require('child_process')
-const execSync = require('child_process').execSync
-
 const packageJsonTmp = require('./../packages/package.json')
 const dependenciesTmp = require('./../config/dependencies')
 
@@ -69,16 +65,14 @@ module.exports = (appName) => {
 
 const creatApp = (appPath, appName) => {
   // 生成package.json
-  const packageJson = {
+  const packageJson = Object.assign(packageJsonTmp, {
     "name": answers.name,
     "version": answers.version,
     "description": answers.description,
     "main": answers.main,
-    "scripts": packageJsonTmp.scripts,
     "author": answers.author,
-    "license": packageJsonTmp.license,
     ...dependenciesTmp[answers.type]
-  }
+  })
   // 确保存在，不存在则创建
   fs.ensureDirSync(appPath);
   fs.writeFileSync(path.join(appPath, 'package.json'), JSON.stringify(packageJson, null, 2));
@@ -91,6 +85,7 @@ const creatApp = (appPath, appName) => {
 const filterFunc = (src, dest) => utils.filter(src, dest, answers.type)
 
 const run = (appPath, appName) => {
+  // 变更Node.js进程的当前工作目录
   process.chdir(appPath);
   // 复制文件
   const packagePath = resolve('packages')
@@ -132,24 +127,8 @@ const run = (appPath, appName) => {
   install(appPath, appName)
 }
 
-const shouldUseYarn = () => {
-  try {
-    execSync('yarn --version', {
-      stdio: 'ignore'
-    });
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
 const install = (appPath, appName) => {
-  let command;
-  if (shouldUseYarn()) {
-    command = 'yarn';
-  } else {
-    command = 'npm';
-  }
+  let command = utils.shouldUseYarn() ? 'yarn' : 'npm'
 
   const result = spawn.sync(command, ['install'], {
     stdio: 'inherit'

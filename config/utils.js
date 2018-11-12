@@ -1,5 +1,9 @@
 const fs = require('fs-extra');
 const path = require('path')
+// Node.js 4.0.0 不支持解构
+// const {execSync} = require('child_process')
+const execSync = require('child_process').execSync
+
 const resolve = (dir) => path.join(__dirname, '..', dir)
 
 module.exports = {
@@ -34,7 +38,8 @@ module.exports = {
   },
   // 过滤不用复制的文件
   filter (src, dest, type) {
-    if (src.includes(resolve('packages/node_modules')) || src.includes(resolve('packages/dist')) || src.includes(resolve('packages/package.json'))) return false
+    // 统一过滤
+    if (src.includes(resolve('packages/node_modules')) || src.includes(resolve('packages/dist')) || src.includes(resolve('packages/package.json')) || src.includes(resolve('packages/config'))) return false
     // 无依赖
     if (type === 0 && (src.includes(resolve('packages/vue')) || src.includes(resolve('packages/react')))) return false
     // react项目
@@ -64,5 +69,15 @@ module.exports = {
         fs.writeFileSync(path.join(modifyPath, file), data);
       }
     })
+  },
+  shouldUseYarn () {
+    try {
+      execSync('yarn --version', {
+        stdio: 'ignore'
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }
