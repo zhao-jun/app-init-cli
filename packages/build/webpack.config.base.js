@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const paths = require('./paths')
+const appConfig = require('../app.config')
 // vue-start
 const VueLoaderPlugin = require('vue-loader/lib/plugin') // vue-loader v15新增
 // vue-end
@@ -18,7 +19,7 @@ let config = {
   // webpack4新增
   mode: process.env.NODE_ENV || 'development',
   target: 'web', // 默认值
-  entry: resolve('src/index.js'),
+  entry: appConfig.devEntry,
   output: {
     filename: 'bundle.js',
     path: resolve('dist/public'),
@@ -28,7 +29,10 @@ let config = {
     publicPath: '/public/'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.vue']
+    extensions: ['.js', '.jsx', '.vue'],
+    alias: {
+      '@': resolve('src')
+    }
   },
   module: {
     rules: [

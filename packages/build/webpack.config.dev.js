@@ -35,7 +35,7 @@ module.exports = webpackMerge(basicConfig, {
   module: {
     rules: [
       {
-        test: /\.less$/,
+        test: /\.(less|css)$/,
         use: [
           // vue-start
           'vue-style-loader',
@@ -83,6 +83,6 @@ module.exports = webpackMerge(basicConfig, {
   // dev-end
   plugins: [
     // webpack-dev-server hot
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
-})
+});

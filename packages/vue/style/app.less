@@ -1,0 +1,220 @@
+a,
+a:active,
+button,
+input,
+select,
+p,
+span,
+textarea {
+    -webkit-tap-highlight-color: transparent
+}
+
+body,
+html {
+    width: 100%;
+    // height: 100%;
+    overflow-x: hidden;
+    // background-color: #F5F5F5;
+    -webkit-overflow-scrolling: touch;
+}
+
+html {
+    //设置通用字体
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; //chrome字体禁止缩放
+    text-size-adjust: 100%; //设置初始rem基准值
+    font-size: 20px
+}
+
+pre {
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif; //chrome字体禁止缩放
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+body,
+button,
+fieldset,
+h1,
+h2,
+h3,
+h4,
+h5,
+input,
+p,
+select,
+ul,
+img,
+span {
+    //清楚默认外边距
+    margin: 0;
+    -khtml-user-select: none;
+    /*早期浏览器*/
+    -moz-user-select: none;
+    /*火狐*/
+    -ms-user-select: none;
+    /*IE10*/
+    user-select: none;
+}
+
+dd,
+dl,
+dt,
+fieldset,
+input,
+li,
+ol,
+td,
+tr,
+ul {
+    //去除默认内边距
+    padding: 0
+}
+
+a,
+button,
+input,
+select {
+    //去除外框
+    outline: 0; //去除聚焦时的阴影
+    -webkit-user-select: none;
+    /*webkit浏览器*/
+    -khtml-user-select: none;
+    /*早期浏览器*/
+    -moz-user-select: none;
+    /*火狐*/
+    -ms-user-select: none;
+    /*IE10*/
+    user-select: none;
+}
+
+:selection {
+    background: transparent;
+}
+
+::-moz-selection {
+    background: transparent;
+}
+
+::-webkit-selection {
+    background: transparent;
+}
+
+a {
+    //去除下划线
+    text-decoration: none
+}
+
+a:active {
+    outline: 0
+}
+
+table {
+    //把表格边框显示为一条单独的边框
+    border-collapse: collapse; //设置相邻单元格的边框间的距离为0
+    border-spacing: 0
+}
+
+button,
+img,
+input {
+    //去除边框
+    border: none
+}
+
+li {
+    //去除默认圆点
+    list-style: none
+}
+
+input {
+    -webkit-user-select: auto;
+    /*webkit浏览器*/
+    -khtml-user-select: auto;
+    /*早期浏览器*/
+    -moz-user-select: auto;
+    /*火狐*/
+    -ms-user-select: auto;
+    /*IE10*/
+    user-select: auto;
+}
+
+button,
+input,
+select,
+textarea {
+    //清除ios默认圆角
+    border-radius: 0
+}
+
+button,
+html input[type=button],
+input[type=reset],
+input[type=submit] {
+    //统一表单的样子
+    appearance: button;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    height: auto
+}
+
+input[type=search] {
+    //统一搜索框的样式
+    appearance: textfield;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box
+}
+
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration {
+    appearance: none
+}
+
+.clearfix {
+    zoom: 1;
+    &:after {
+        clear: both;
+        content: '.';
+        display: block;
+        width: 0;
+        height: 0;
+        visibility: hidden;
+    }
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background-color: #F5F5F5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 1px rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+/*定义滑块 内阴影+圆角*/
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #555;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="search"],
+input[type="reset"] {
+    appearance: none;
+}
+
+textarea {
+    appearance: none;
+}

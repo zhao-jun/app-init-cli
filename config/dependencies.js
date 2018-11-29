@@ -1,7 +1,7 @@
 const packageJson = require('./../packages/package.json')
 
 // vue、react各自独有的依赖
-const vueDep = ["vue", "vue-router", "vuex", "vue-style-loader", "vue-loader", "eslint-plugin-vue"],
+const vueDep = ["vue", "vue-router", "vuex", "vue-style-loader", "vue-loader", "eslint-plugin-vue", "vconsole"],
   reactDep = ["react", "react-dom", "react-hot-loader", "react-router-dom", "babel-preset-react", "react-loadable", "babel-plugin-syntax-dynamic-import", "babel-preset-react", "babel-plugin-transform-decorators-legacy", "eslint-plugin-flowtype", "eslint-plugin-jsx-a11y", "eslint-plugin-react", "eslint-config-react-app", "mobx-react", "mobx"],
   blankDep = vueDep.concat(reactDep),
   depend = [blankDep, vueDep, reactDep]

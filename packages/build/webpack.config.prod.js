@@ -2,6 +2,7 @@ const path = require('path')
 const basicConfig = require('./webpack.config.base')
 const webpackMerge = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const appConfig = require('../app.config')
 // dev-start
 const configDev = require('../config/dev')
 // dev-end
@@ -16,6 +17,7 @@ let config =  webpackMerge(basicConfig, {
   //   app: resolve('vue/index.js'),
   //   // vender: ['vue']
   // },
+  entry: basicConfig.proEntry || basicConfig.entry,
   output: {
     // 打包的时候使用chunkhash，hash所有打包文件hash值相同，其中一个文件改变就全部改变，不利于缓存
     filename: '[name].[chunkhash:8].js',
