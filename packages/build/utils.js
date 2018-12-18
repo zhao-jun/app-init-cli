@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const { exec, spawn } = require('child_process');
-
+const config = require('./config')
 const friendlySyntaxErrorLabel = 'Syntax error:';
 const isLikelyASyntaxError = (message) => {
   return message.indexOf(friendlySyntaxErrorLabel) !== -1;
@@ -120,5 +120,11 @@ module.exports = {
       default:
         spawn('xdg-open', [url]);   // 参考anywhere
     }
+  },
+  assetsPath () {
+    var assetsSubDirectory = (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'production')
+    ? config.prod.assetsSubDirectory
+    : config.dev.assetsSubDirectory
+  return path.posix.join(assetsSubDirectory, _path)
   }
 }

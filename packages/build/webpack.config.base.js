@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const paths = require('./paths')
 const appConfig = require('../app.config')
+const utils = require('./utils')
 // vue-start
 const VueLoaderPlugin = require('vue-loader/lib/plugin') // vue-loader v15新增
 // vue-end
@@ -69,7 +70,19 @@ let config = {
             loader: 'url-loader',
             options: {
               limit: 1024,
-              name: '[name].[hash:8].[ext]'
+              name: utils.assetsPath('img/[name].[hash:7].[ext]')
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
             }
           }
         ]
